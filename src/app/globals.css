@@ -1,1 +1,83 @@
 @import "tailwindcss";
+
+/* Semantic design tokens. Update these values to retheme the entire product. */
+:root {
+  --theme-canvas: #f8fafc;
+  --theme-surface: #ffffff;
+  --theme-surface-muted: #f1f5f9;
+  --theme-foreground: #172033;
+  --theme-muted: #5b677a;
+  --theme-subtle: #8a96a8;
+  --theme-border: #dbe3ee;
+  --theme-primary: #2463eb;
+  --theme-primary-hover: #1d4ed8;
+  --theme-primary-foreground: #ffffff;
+  --theme-success: #0f9f6e;
+  --theme-warning: #ba7000;
+  --theme-focus: #2463eb;
+  --theme-shadow: 219 229 240;
+}
+
+.dark {
+  --theme-canvas: #0c1220;
+  --theme-surface: #151e2f;
+  --theme-surface-muted: #1c283c;
+  --theme-foreground: #f1f5f9;
+  --theme-muted: #a8b5c8;
+  --theme-subtle: #76859a;
+  --theme-border: #2c3a50;
+  --theme-primary: #78a6ff;
+  --theme-primary-hover: #a5c4ff;
+  --theme-primary-foreground: #0c1730;
+  --theme-success: #4fd1a2;
+  --theme-warning: #f7b955;
+  --theme-focus: #a5c4ff;
+  --theme-shadow: 0 0 0;
+}
+
+/* Tailwind v4 theme derivatives: use bg-canvas, text-foreground, etc. */
+@theme inline {
+  --color-canvas: var(--theme-canvas);
+  --color-surface: var(--theme-surface);
+  --color-surface-muted: var(--theme-surface-muted);
+  --color-foreground: var(--theme-foreground);
+  --color-muted: var(--theme-muted);
+  --color-subtle: var(--theme-subtle);
+  --color-border: var(--theme-border);
+  --color-primary: var(--theme-primary);
+  --color-primary-hover: var(--theme-primary-hover);
+  --color-primary-foreground: var(--theme-primary-foreground);
+  --color-success: var(--theme-success);
+  --color-warning: var(--theme-warning);
+  --color-focus: var(--theme-focus);
+  --font-sans: var(--font-geist-sans);
+}
+
+* {
+  border-color: var(--theme-border);
+}
+
+html {
+  background: var(--theme-canvas);
+}
+
+body {
+  background: var(--theme-canvas);
+  color: var(--theme-foreground);
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+:focus-visible {
+  outline: 3px solid var(--theme-focus);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    transition: background-color 180ms ease, color 180ms ease;
+  }
+}

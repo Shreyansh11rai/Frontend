@@ -6,11 +6,15 @@ This version has breaking changes — APIs, conventions, and file structure may 
 
 ## Project overview
 
-This is a landing/marketing website for digital service rendering business, It'll have all the possible SEO setup for the pages it has, make it responsive for all devices and specially for mobile devices, everything should be properly functional and visible follow google's material UI standards.
+This is a landing/marketing website for digital service rendering business, It'll have all the possible SEO setup for the pages it has, make it responsive for all devices and specially for mobile devices, everything should be properly functional and visible follow google's material UI standards. This site is configured for SSG, and static hosting.
 
 ## Folder structure
 
-Follow feature based folder structure, and strictly typed functions and components. Maintain a clear separation view, data, api, config, utils, service, library, for a scalable project right now every data will be locally available by database files and in future API's will be integrated for the dynamic data. Keep all global brand related data in single data file to change at once if needed. Comment the logics and tsx sufficiently to be understandable, keep a structured and unified contract between layers.
+Follow feature based folder structure, and strictly typed functions and components. Maintain a clear separation view, data, api, config, utils, service, library, for a scalable project right now every data will be locally available by database files and in future API's will be integrated for the dynamic data. Keep all global brand related data in single data file to change at once if needed. Comment the logics and tsx sufficiently to be understandable, keep a structured and unified contract between layers. Use ./src/app only for routing to components and layouts mounting nothing else keep it clean. Inside components create folders by routes.
+
+## Naming convention
+
+Follow PascalCase for components and kebab-case for ts files, suffix utils files with - .util, provider - .prov, public files - kebab-case, data files - snake_case, project env, config, and constants - UPPER_CASE.
 
 ## View or presentation
 
