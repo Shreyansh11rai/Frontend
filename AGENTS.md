@@ -10,7 +10,7 @@ This is a landing/marketing website for digital service rendering business, It'l
 
 ## Folder structure
 
-Follow feature based folder structure, and strictly typed functions and components. Maintain a clear separation view, data, api, config, utils, service, library, for a scalable project right now every data will be locally available by database files and in future API's will be integrated for the dynamic data. Keep all global brand related data in single data file to change at once if needed. Comment the logics and tsx sufficiently to be understandable, keep a structured and unified contract between layers. Use ./src/app only for routing to components and layouts mounting nothing else keep it clean. Inside components create folders by routes.
+Follow feature based folder structure, and strictly typed functions and components. Maintain a clear separation view, data, api, config, utils, service, library, for a scalable project right now every data will be locally available by database files and in future API's will be integrated for the dynamic data. Keep all global brand related data in single data file to change at once if needed. Comment the logics and tsx sufficiently to be understandable, keep a structured and unified contract between layers. Use ./src/app only for routing to components and layouts mounting nothing else keep it clean. Inside components create folders by routes. For services
 
 ## Naming convention
 

@@ -3,5 +3,6 @@ export const brand = {
   name: "XYZ Agency",
   shortName: "XYZ",
   description: "Digital services designed to move ambitious businesses forward.",
-  navigation: [{ label: "Theme review", href: "/theme-review" }] as const,
+  siteUrl: "https://xyzagency.com",
+  contactEmail: "hello@xyzagency.com",
 } as const;
