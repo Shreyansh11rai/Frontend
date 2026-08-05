@@ -42,13 +42,15 @@ export function Footer() {
         </div>
 
         <div className="flex flex-col gap-3 pt-5 text-sm text-muted sm:flex-row sm:items-center sm:justify-between">
-          <p>© {new Date().getFullYear()} {brand.name}. All rights reserved.</p>
-          <a
+          <p>
+            © {new Date().getFullYear()} {brand.name}. All rights reserved.
+          </p>
+          {/* <a
             className="w-fit font-medium text-muted transition-colors hover:text-primary"
             href={`tel:${brand.contactNumber}`}
           >
             {brand.contactNumber}
-          </a>
+          </a> */}
         </div>
       </div>
     </footer>

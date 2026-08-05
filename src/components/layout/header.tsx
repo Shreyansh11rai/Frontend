@@ -67,7 +67,7 @@ export function Header() {
   return (
     <header
       ref={headerRef}
-      className="sticky top-0 z-50 border-b border-border/80 shadow-sm glass-translucent"
+      className="sticky top-0 z-50 border-b border-border/80 shadow-sm glass-opaque bg-surface/50"
     >
       <div className="mx-auto flex min-h-16 w-full max-w-7xl items-center gap-3 px-4 py-3 sm:px-6 lg:px-8">
         <Link
@@ -223,7 +223,7 @@ function ServicesDirectory({
           ))}
         </div>
       </div>
-      <div className="h-full w-full z-0 glass-transparent absolute top-1 left-1"></div>
+      <div className="h-full w-full z-0 bg-surface/10 glass-translucent absolute top-0 left-0"></div>
     </div>
   );
 }
