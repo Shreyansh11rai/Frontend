@@ -1,15 +1,10 @@
 import type { Metadata } from "next";
-import { Geist } from "next/font/google";
 import "./globals.css";
 import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
 import { ThemeProvider } from "@/components/layout/theme-provider";
+import { GlobalEnquiryWidget } from "@/components/widgets/global-enquiry-widget";
 import { brand } from "@/config/brand";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL(brand.siteUrl),
@@ -51,13 +46,12 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${geistSans.variable} min-h-screen bg-canvas font-sans text-foreground`}
-      >
+      <body className="min-h-screen bg-canvas font-sans text-foreground">
         <ThemeProvider>
           <Header />
           {children}
           <Footer />
+          <GlobalEnquiryWidget />
         </ThemeProvider>
       </body>
     </html>

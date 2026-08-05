@@ -12,9 +12,11 @@ export function generateStaticParams() {
   return SERVICE_SLUGS.map((service) => ({ service }));
 }
 
-export const dynamicParams = false;
+// export const dynamicParams = false;
 
-export async function generateMetadata({ params }: ServiceRouteProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: ServiceRouteProps): Promise<Metadata> {
   const { service: slug } = await params;
   const service = getServiceBySlug(slug);
   if (!service) return {};
@@ -22,7 +24,11 @@ export async function generateMetadata({ params }: ServiceRouteProps): Promise<M
     title: service.name,
     description: service.description,
     alternates: { canonical: `/${service.slug}` },
-    openGraph: { title: service.name, description: service.description, url: `/${service.slug}` },
+    openGraph: {
+      title: service.name,
+      description: service.description,
+      url: `/${service.slug}`,
+    },
     twitter: { title: service.name, description: service.description },
   };
 }
