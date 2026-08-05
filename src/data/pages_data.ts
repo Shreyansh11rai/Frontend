@@ -19,7 +19,7 @@ export interface InformationalPageData {
 
 export const PAGES_DATA = {
   about: {
-    eyebrow: "About XYZ",
+    eyebrow: "About Doomsphere",
     title:
       "Digital work should feel clear, useful, and genuinely helpful for growing businesses.",
     description:
@@ -77,7 +77,7 @@ export const PAGES_DATA = {
     ctas: [
       {
         label: "Email us",
-        href: "mailto:hello@doomsphere.com?subject=Enquiry%20for%20XYZ%20Agency",
+        href: "mailto:hello@doomsphere.com?subject=Enquiry%20for%20DoomSphere%20Agency",
         kind: "primary",
       },
       { label: "Call us", href: "tel:+918858191942", kind: "secondary" },
