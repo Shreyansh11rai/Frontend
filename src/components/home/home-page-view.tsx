@@ -161,7 +161,7 @@ export function HomePageView() {
         </div>
       </section>
 
-      <section className="border-y border-border bg-surface-muted">
+      <section className="relative border-y border-border bg-surface-muted">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
           <p className="text-sm font-bold tracking-[.18em] text-primary uppercase">
             {coreBusiness.eyebrow}
@@ -178,6 +178,11 @@ export function HomePageView() {
             </div>
           </div>
         </div>
+        <img
+          src="/svg/handshake-deal.svg"
+          alt="handshake trust"
+          className="h-40 absolute right-0 top-0"
+        />
       </section>
 
       <section id="services" className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
@@ -248,9 +253,9 @@ export function HomePageView() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
+      <section className="mx-auto max-w-7xl flex items-center gap-10 flex-wrap justify-between px-6 py-20 lg:px-8">
         <div className="rounded-2xl px-7 py-12 sm:px-12">
-          <p className="text-sm font-bold tracking-[.18em] uppercase">
+          <p className="text-sm font-bold text-primary tracking-[.18em] uppercase">
             {cta.eyebrow}
           </p>
           <h2 className="mt-3 max-w-2xl text-3xl font-semibold">{cta.title}</h2>
@@ -262,6 +267,13 @@ export function HomePageView() {
               {cta.primaryCta.label}
             </Link>
           </div>
+        </div>
+        <div className="h-60">
+          <img
+            src="/svg/next-task.svg"
+            alt="person searching next task"
+            className="h-full w-full object-cover"
+          />
         </div>
       </section>
     </main>
