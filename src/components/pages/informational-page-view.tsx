@@ -10,35 +10,45 @@ interface InformationalPageViewProps {
 export function InformationalPageView({ page }: InformationalPageViewProps) {
   return (
     <main>
+      {/* <section className="mx-auto grid grid-cols-6 gap-10 max-w-7xl px-6 py-20 sm:py-28 lg:px-8"> */}
       <section className="mx-auto max-w-7xl px-6 py-20 sm:py-28 lg:px-8">
-        <div className="flex items-center gap-3">
-          <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary">
-            <IconComp name={page.icon ?? "service"} className="h-5 w-5" />
-          </span>
-          <p className="text-sm font-bold tracking-[.18em] text-primary uppercase">
-            {page.eyebrow}
-          </p>
-        </div>
-        <h1 className="mt-5 max-w-4xl text-4xl font-semibold tracking-tight text-foreground sm:text-6xl">
-          {page.title}
-        </h1>
-        <p className="mt-6 max-w-2xl text-lg leading-8 text-muted">
-          {page.description}
-        </p>
-
-        {page.ctas && page.ctas.length > 0 && (
-          <div className="mt-8 flex flex-wrap gap-3">
-            {page.ctas.map((cta) => (
-              <a
-                key={cta.label}
-                href={cta.href}
-                className={`rounded-lg px-5 py-3 font-semibold transition-transform hover:-translate-y-0.5 ${cta.kind === "primary" ? "bg-primary text-primary-foreground" : "border border-border bg-surface text-foreground hover:bg-surface-muted"}`}
-              >
-                {cta.label}
-              </a>
-            ))}
+        <div className="">
+          <div className="flex items-center gap-3">
+            <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+              <IconComp name={page.icon ?? "service"} className="h-5 w-5" />
+            </span>
+            <p className="text-sm font-bold tracking-[.18em] text-primary uppercase">
+              {page.eyebrow}
+            </p>
           </div>
-        )}
+          <h1 className="mt-5 max-w-4xl text-4xl font-semibold tracking-tight text-foreground sm:text-6xl">
+            {page.title}
+          </h1>
+          <p className="mt-6 max-w-2xl text-lg leading-8 text-muted">
+            {page.description}
+          </p>
+
+          {page.ctas && page.ctas.length > 0 && (
+            <div className="mt-8 flex flex-wrap gap-3">
+              {page.ctas.map((cta) => (
+                <a
+                  key={cta.label}
+                  href={cta.href}
+                  className={`rounded-lg px-5 py-3 font-semibold transition-transform hover:-translate-y-0.5 ${cta.kind === "primary" ? "bg-primary text-primary-foreground" : "border border-border bg-surface text-foreground hover:bg-surface-muted"}`}
+                >
+                  {cta.label}
+                </a>
+              ))}
+            </div>
+          )}
+        </div>
+        {/* <div className="w-70 col-start-5 flex items-center justify-end col-span-1">
+          <img
+            src="/svg/business-plan.svg"
+            alt="person planning business"
+            className="object-cover w-full"
+          />
+        </div> */}
       </section>
 
       <section className="border-y border-border bg-surface-muted">
