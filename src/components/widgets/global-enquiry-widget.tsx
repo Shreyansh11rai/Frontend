@@ -3,6 +3,8 @@
 import { useMemo, useState } from "react";
 import { SERVICES_DATA } from "@/data/services_data";
 import { submitEnquiry } from "@/services/enquiryService";
+import { brand } from "@/config/brand";
+import { IoCall } from "react-icons/io5";
 
 const MESSAGE_TEMPLATES = {
   "custom-websites":
@@ -47,8 +49,11 @@ export function GlobalEnquiryWidget() {
 
   return (
     <div className="fixed bottom-4 right-4 z-[70] flex items-center gap-2">
-      <a href="tel:+918858191942" className="ui-button ui-button-secondary">
-        Make a Call
+      <a
+        href={`tel:${brand.contactNumber}`}
+        className="ui-button ui-button-secondary"
+      >
+        <IoCall /> {brand.contactNumber}
       </a>
       <button
         type="button"

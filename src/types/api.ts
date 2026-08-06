@@ -35,6 +35,7 @@ export interface PricingInterestPayload {
   contact: string;
   serviceId: string;
   source: string;
+  tier?: string;
 }
 
 export interface SubmissionResponse {

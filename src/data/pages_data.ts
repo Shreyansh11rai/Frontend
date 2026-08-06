@@ -19,7 +19,7 @@ export interface InformationalPageData {
 
 export const PAGES_DATA = {
   about: {
-    eyebrow: "About XYZ",
+    eyebrow: "About Doomsphere",
     title:
       "Digital work should feel clear, useful, and genuinely helpful for growing businesses.",
     description:
@@ -77,7 +77,7 @@ export const PAGES_DATA = {
     ctas: [
       {
         label: "Email us",
-        href: "mailto:hello@doomsphere.com?subject=Enquiry%20for%20XYZ%20Agency",
+        href: "mailto:hello@doomsphere.com?subject=Enquiry%20for%20DoomSphere%20Agency",
         kind: "primary",
       },
       { label: "Call us", href: "tel:+918858191942", kind: "secondary" },
@@ -179,6 +179,60 @@ export const PAGES_DATA = {
         description:
           "Your goals, current process, customer context, and the people who will own the work.",
         icon: "book",
+      },
+    ],
+  },
+  "privacy-policy": {
+    eyebrow: "Privacy policy",
+    title: "We keep your information clear, limited, and handled with care.",
+    description:
+      "This policy explains what data we gather, why we use it, and how you can get in touch if you want to review or update it.",
+    icon: "lock",
+    sections: [
+      {
+        title: "What we collect",
+        description:
+          "We may collect your name, email address, phone number, business details, and the message you send through our contact forms or enquiries.",
+        icon: "book",
+      },
+      {
+        title: "How we use it",
+        description:
+          "We use the information you share to respond to your enquiry, recommend a relevant service, and follow up about the work you asked us to discuss.",
+        icon: "check",
+      },
+      {
+        title: "Your choices",
+        description:
+          "If you want to review, correct, or remove the information you shared with us, please contact us directly and we will help as quickly as possible.",
+        icon: "shield",
+      },
+    ],
+  },
+  "terms-of-service": {
+    eyebrow: "Terms of service",
+    title: "A clear framework for working together on digital services.",
+    description:
+      "These terms describe how we approach service delivery, responsibilities, and the shared expectations for each engagement.",
+    icon: "shield",
+    sections: [
+      {
+        title: "Scope of services",
+        description:
+          "The services we provide are shaped around the brief you share, and any changes to scope are agreed in writing before work begins.",
+        icon: "target",
+      },
+      {
+        title: "Client responsibilities",
+        description:
+          "We ask clients to provide timely feedback, access to relevant materials, and clarity on the business goal behind the request.",
+        icon: "check",
+      },
+      {
+        title: "Ownership and payment",
+        description:
+          "Work delivered remains subject to the agreed project terms, and any invoices or payment milestones are discussed before the engagement begins.",
+        icon: "pricing",
       },
     ],
   },

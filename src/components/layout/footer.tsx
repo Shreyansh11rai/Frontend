@@ -1,6 +1,14 @@
+import Link from "next/link";
 import { brand } from "@/config/brand";
+import { PAGE_NAVIGATION } from "@/data/navigation_data";
+import { BiCalendar, BiLinkExternal } from "react-icons/bi";
+import { IoCallOutline } from "react-icons/io5";
 
 export function Footer() {
+  const footerPageLinks = PAGE_NAVIGATION.filter(
+    (item) => item.label !== "Theme review",
+  );
+
   return (
     <footer className="border-t border-border bg-surface">
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
@@ -21,7 +29,7 @@ export function Footer() {
               </p>
             </div>
           </div>
-
+          {/* email  */}
           <a
             className="group inline-flex w-fit items-center gap-3 rounded-xl border border-border bg-canvas px-4 py-3 text-left transition-colors hover:border-primary hover:bg-surface-muted"
             href={`mailto:${brand.contactEmail}`}
@@ -39,16 +47,90 @@ export function Footer() {
               </span>
             </span>
           </a>
-        </div>
-
-        <div className="flex flex-col gap-3 pt-5 text-sm text-muted sm:flex-row sm:items-center sm:justify-between">
-          <p>© {new Date().getFullYear()} {brand.name}. All rights reserved.</p>
+          {/* call  */}
           <a
-            className="w-fit font-medium text-muted transition-colors hover:text-primary"
+            className="group inline-flex w-fit items-center gap-3 rounded-xl border border-border bg-canvas px-4 py-3 text-left transition-colors hover:border-primary hover:bg-surface-muted"
             href={`tel:${brand.contactNumber}`}
+            aria-label={`Call us ${brand.contactNumber}`}
           >
-            {brand.contactNumber}
+            <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10 text-primary">
+              <IoCallOutline />
+            </span>
+            <span>
+              <span className="block text-xs font-semibold tracking-[0.12em] text-subtle uppercase">
+                Call us
+              </span>
+              <span className="mt-0.5 block text-sm font-semibold text-foreground group-hover:text-primary">
+                {brand.contactNumber}
+              </span>
+            </span>
           </a>
+          {/* appointment  */}
+          <a
+            className="group inline-flex w-fit items-center gap-3 rounded-xl border border-border bg-canvas px-4 py-3 text-left transition-colors hover:border-primary hover:bg-surface-muted"
+            href={`/contact-us`}
+            aria-label={`Request a call`}
+          >
+            <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10 text-primary">
+              <BiCalendar />
+            </span>
+            <span>
+              <span className="block text-xs font-semibold tracking-[0.12em] text-subtle uppercase">
+                Schedule a callback
+              </span>
+              <span className="mt-0.5 flex items-center gap-2 text-sm font-semibold text-foreground group-hover:text-primary">
+                <BiLinkExternal />
+                Fill in details
+              </span>
+            </span>
+          </a>
+        </div>
+        <div className="mt-8 grid gap-8 text-sm text-muted md:grid-cols-2 lg:grid-cols-3">
+          <div>
+            <p className="text-sm font-semibold tracking-[0.16em] text-subtle uppercase">
+              Pages
+            </p>
+            <ul className="mt-3 flex flex-col gap-2">
+              {footerPageLinks.map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className="transition-colors hover:text-foreground"
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <p className="text-sm font-semibold tracking-[0.16em] text-subtle uppercase">
+              Legal
+            </p>
+            <ul className="mt-3 flex flex-col gap-2">
+              <li>
+                <Link
+                  href="/privacy-policy"
+                  className="transition-colors hover:text-foreground"
+                >
+                  Privacy policy
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/terms-of-service"
+                  className="transition-colors hover:text-foreground"
+                >
+                  Terms of service
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div className="mt-8 flex flex-col gap-3 border-t border-border pt-5 text-sm text-muted sm:flex-row sm:items-center sm:justify-between">
+          <p>
+            © {new Date().getFullYear()} {brand.name}. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>

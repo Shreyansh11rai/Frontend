@@ -46,12 +46,11 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="min-h-screen bg-canvas font-sans text-foreground">
+      <body className="max-h-screen relative bg-canvas font-sans text-foreground">
         <ThemeProvider>
           <Header />
           {children}
           <Footer />
-          <GlobalEnquiryWidget />
         </ThemeProvider>
       </body>
     </html>

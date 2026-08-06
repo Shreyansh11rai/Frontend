@@ -7,11 +7,7 @@ import { isThemeName, themeNames, type ThemeName } from "@/lib/theme";
 export function ThemeReviewView() {
   const { resolvedTheme, setTheme } = useTheme();
   const currentTheme = isThemeName(resolvedTheme) ? resolvedTheme : "light";
-  let glassTokens: string[] = [
-    "glass-transparent",
-    "glass-translucent",
-    "glass-opaque",
-  ];
+  let glassTokens: string[] = ["ui-surface", "ui-modal", "ui-card"];
 
   return (
     <main className="mx-auto w-full max-w-7xl px-6 py-12 sm:px-10 sm:py-16 lg:px-16">

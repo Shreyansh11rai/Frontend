@@ -13,6 +13,7 @@ import {
 } from "@/data/navigation_data";
 import type { ServiceCategory } from "@/data/services_data";
 import { ThemeToggle } from "./theme-toggle";
+import GlassSurface from "../shared/GlassSurfaceComp";
 
 type ServiceTab = (typeof SERVICE_CATEGORY_TABS)[number];
 
@@ -27,6 +28,9 @@ export function Header() {
   const searchInputRef = useRef<HTMLInputElement>(null);
   const services = getServicesForCategory(activeTab);
   const searchResults = useMemo(() => getSearchResults(query), [query]);
+  const mobilePageLinks = PAGE_NAVIGATION.filter(
+    (item) => item.label !== "Theme review",
+  );
 
   useEffect(() => {
     function closeOnOutsideClick(event: MouseEvent) {
@@ -67,9 +71,9 @@ export function Header() {
   return (
     <header
       ref={headerRef}
-      className="sticky top-0 z-50 border-b border-border/80 shadow-sm glass-translucent"
+      className="sticky top-0 left-0 z-50 border-b border-border/80 shadow-sm bg-surface-muted"
     >
-      <div className="mx-auto flex min-h-16 w-full max-w-7xl items-center gap-3 px-4 py-3 sm:px-6 lg:px-8">
+      <div className="mx-auto flex w-full max-w-7xl items-center gap-3 px-4 py-3 sm:px-6 lg:px-8">
         <Link
           className="shrink-0 text-xl font-bold tracking-tight text-foreground"
           href="/"
@@ -95,22 +99,22 @@ export function Header() {
               className={`h-4 w-4 transition-transform ${isServicesOpen ? "rotate-180" : ""}`}
             />
           </button>
-          {PAGE_NAVIGATION.filter(
-            (item) => item.label !== "Home" && item.label !== "Theme review",
-          ).map((item) => {
-            const isActive =
-              pathname === item.href ||
-              (item.href !== "/" && pathname.startsWith(item.href));
-            return (
-              <Link
-                key={item.href}
-                className={` hidden rounded-full px-3 py-2 text-sm font-semibold transition-colors lg:inline-flex ${isActive ? "bg-primary text-primary-foreground" : "text-muted hover:bg-surface-muted hover:text-foreground"}`}
-                href={item.href}
-              >
-                {item.label}
-              </Link>
-            );
-          })}
+          {PAGE_NAVIGATION.filter((item) => item.label !== "Theme review").map(
+            (item) => {
+              const isActive =
+                pathname === item.href ||
+                (item.href !== "/" && pathname.startsWith(item.href));
+              return (
+                <Link
+                  key={item.href}
+                  className={` hidden rounded-full px-3 py-2 text-sm font-semibold transition-colors lg:inline-flex ${isActive ? "bg-primary text-primary-foreground" : "text-muted hover:bg-surface-muted hover:text-foreground"}`}
+                  href={item.href}
+                >
+                  {item.label}
+                </Link>
+              );
+            },
+          )}
         </nav>
         <div className="ml-auto flex items-center gap-2">
           <button
@@ -144,6 +148,25 @@ export function Header() {
           onQueryChange={setQuery}
         />
       )}
+      <div className="border-t border-border/60 bg-canvas/80 px-4 py-2 lg:hidden">
+        <div className="flex items-center gap-2 overflow-x-auto pb-1">
+          {mobilePageLinks.map((item) => {
+            const isActive =
+              pathname === item.href ||
+              (item.href !== "/" && pathname.startsWith(item.href));
+
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`shrink-0 rounded-full px-3 py-1.5 text-sm font-semibold transition-colors ${isActive ? "bg-primary text-primary-foreground" : "bg-surface-muted text-muted hover:bg-border hover:text-foreground"}`}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
+        </div>
+      </div>
     </header>
   );
 }
@@ -164,9 +187,9 @@ function ServicesDirectory({
   return (
     <div
       id="services-directory"
-      className="relative inset-x-0 top-full border-y z-100 border-border"
+      className="absolute inset-x-0 border-y z-100 border-border border-b bg-surface-muted shadow-lg"
     >
-      <div className="relative z-1 mx-auto max-w-7xl px-4 py-5 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 py-5 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between gap-4">
           <div>
             <p className="text-sm font-bold tracking-[.14em] text-primary uppercase">
@@ -202,7 +225,7 @@ function ServicesDirectory({
             </button>
           ))}
         </div>
-        <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4 overflow-y-auto max-h-[55vh]">
           {services.map((service) => (
             <Link
               key={service.slug}
@@ -223,7 +246,6 @@ function ServicesDirectory({
           ))}
         </div>
       </div>
-      <div className="h-full w-full z-0 glass-transparent absolute top-1 left-1"></div>
     </div>
   );
 }
@@ -246,70 +268,67 @@ function SearchDirectory({
   return (
     <div
       id="site-search"
-      className=" absolute inset-x-0 top-full border-b border-border shadow-xl backdrop-blur-xl"
+      className="mx-auto left-1/2 -translate-x-1/2 absolute max-w-3xl min-w-[320px] h-[80vh] overflow-hidden rounded-xl border-border border shadow-xl bg-surface-muted p-3 md:p-5"
     >
-      <div className="mx-auto max-w-3xl px-4 py-5 sm:px-6">
-        <label className="sr-only" htmlFor="site-search-input">
-          Search pages and services
-        </label>
-        <div className="flex items-center rounded-xl border border-border bg-canvas px-3 focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/20">
-          <IconComp name="search" className="h-5 w-5 text-muted" />
-          <input
-            ref={inputRef}
-            id="site-search-input"
-            value={query}
-            onChange={(event) => onQueryChange(event.target.value)}
-            className="h-12 w-full bg-transparent px-3 text-sm text-foreground outline-none placeholder:text-subtle"
-            placeholder="Search pages and services"
-            type="search"
-          />
-        </div>
-        <div className="mt-4 max-h-[60vh] overflow-y-auto">
-          <p className="px-1 text-xs font-bold tracking-[.14em] text-subtle uppercase">
-            {query ? "Results" : "Popular destinations"}
-          </p>
-          <div className="mt-2 grid gap-2 sm:grid-cols-2">
-            {results.map((result) => (
-              <Link
-                key={result.href}
-                href={result.href}
-                onClick={onNavigate}
-                className="flex items-start gap-3 rounded-xl p-3 transition hover:bg-surface-muted"
-              >
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                  {result.type === "Service" ? (
-                    <IconComp
-                      name={
-                        result.category === "Enquiry"
-                          ? "calendar"
-                          : result.category === "WhatsApp Services"
-                            ? "message"
-                            : result.category === "Websites"
-                              ? "window"
-                              : "spark"
-                      }
-                      className="h-5 w-5"
-                    />
-                  ) : (
-                    <IconComp name={result.icon} className="h-5 w-5" />
-                  )}
+      {/* input  */}
+      <div className="flex items-center rounded-xl border border-border bg-canvas px-3 py-1">
+        <IconComp name="search" className="h-5 w-5 text-muted" />
+        <input
+          ref={inputRef}
+          id="site-search-input"
+          value={query}
+          onChange={(event) => onQueryChange(event.target.value)}
+          className="h-10 rounded-full w-[90%] bg-transparent px-3 text-sm text-foreground outline-none placeholder:text-subtle ml-2"
+          placeholder="Search pages and services"
+          type="search"
+        />
+      </div>
+      <p className="mt-3 px-1 text-xs font-bold tracking-[.14em] text-subtle uppercase">
+        {query ? "Results" : "Popular destinations"}
+      </p>
+      {/* results */}
+      <div className="overflow-y-auto h-[87%] mt-1">
+        <div className="mt-2 grid gap-2 sm:grid-cols-2">
+          {results.map((result) => (
+            <Link
+              key={result.href}
+              href={result.href}
+              onClick={onNavigate}
+              className="flex items-start gap-3 rounded-xl p-3 transition hover:bg-surface hover:shadow-md"
+            >
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                {result.type === "Service" ? (
+                  <IconComp
+                    name={
+                      result.category === "Enquiry"
+                        ? "calendar"
+                        : result.category === "WhatsApp Services"
+                          ? "message"
+                          : result.category === "Websites"
+                            ? "window"
+                            : "spark"
+                    }
+                    className="h-5 w-5"
+                  />
+                ) : (
+                  <IconComp name={result.icon} className="h-5 w-5" />
+                )}
+              </span>
+              <span>
+                <span className="block text-sm font-semibold text-foreground">
+                  {result.label}
                 </span>
-                <span>
-                  <span className="block text-sm font-semibold text-foreground">
-                    {result.label}
-                  </span>
-                  <span className="mt-0.5 block text-sm leading-5 text-muted">
-                    {result.description}
-                  </span>
+                <span className="mt-0.5 block text-sm leading-5 text-muted">
+                  {result.description}
                 </span>
-              </Link>
-            ))}
-            {results.length === 0 && (
-              <p className="px-3 py-6 text-sm text-muted">
-                No matching pages or services found.
-              </p>
-            )}
-          </div>
+              </span>
+            </Link>
+          ))}
+          {results.length === 0 && (
+            <p className="px-3 py-6 text-sm text-muted">
+              No matching pages or services found.
+            </p>
+          )}
         </div>
       </div>
     </div>
