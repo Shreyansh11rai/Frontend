@@ -51,6 +51,7 @@
   --color-warning: var(--theme-warning);
   --color-focus: var(--theme-focus);
   --font-sans: "Segoe UI", Arial, sans-serif;
+  --container-7xl: 1280px;
 }
 
 * {
