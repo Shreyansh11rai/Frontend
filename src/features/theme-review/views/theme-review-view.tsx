@@ -1,13 +1,27 @@
 "use client";
 
 import { useTheme } from "next-themes";
+import { Button, type ButtonProps } from "@/components/shared/Button";
 import { themeTokenSamples } from "@/data/theme-review";
 import { isThemeName, themeNames, type ThemeName } from "@/lib/theme";
+
+const glassTokens = ["ui-surface", "ui-modal", "ui-card"] as const;
+
+type ButtonVariant = NonNullable<ButtonProps["variant"]>;
+type ButtonSize = NonNullable<ButtonProps["size"]>;
+type ButtonRadius = NonNullable<ButtonProps["radius"]>;
+
+const buttonVariants: readonly ButtonVariant[] = [
+  "primary",
+  "secondary",
+  "ghost",
+];
+const buttonSizes: readonly ButtonSize[] = ["sm", "md", "lg", "icon"];
+const buttonRadii: readonly ButtonRadius[] = ["md", "lg", "xl", "full"];
 
 export function ThemeReviewView() {
   const { resolvedTheme, setTheme } = useTheme();
   const currentTheme = isThemeName(resolvedTheme) ? resolvedTheme : "light";
-  let glassTokens: string[] = ["ui-surface", "ui-modal", "ui-card"];
 
   return (
     <main className="mx-auto w-full max-w-7xl px-6 py-12 sm:px-10 sm:py-16 lg:px-16">
@@ -102,24 +116,113 @@ export function ThemeReviewView() {
               </div>
             </article>
           ))}
-          {glassTokens.map((t) => (
-            <div>
+          {glassTokens.map((token) => (
+            <div key={token}>
               <div className="relative w-50 bg-surface p-5">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Reiciendis dolorem, doloremque fuga voluptate incidunt eum! Vel
                 veritatis modi dolore dolores.
                 <div
-                  className={`h-full w-full z-10 absolute top-0 left-0 ${t}`}
+                  className={`absolute top-0 left-0 z-10 h-full w-full ${token}`}
                 ></div>
               </div>
-              <h1>{t}</h1>
-              <button
-                className={`px-3 py-1 border-border border rounded-full ${t}`}
+              <h3 className="mt-3 text-sm font-semibold text-foreground">
+                {token}
+              </h3>
+              <Button
+                type="button"
+                variant="secondary"
+                size="sm"
+                className={`border border-border ${token}`}
               >
                 Demo buttons
-              </button>
+              </Button>
             </div>
           ))}
+        </div>
+      </section>
+      <section className="mt-8" aria-labelledby="buttons-title">
+        <div className="flex items-center justify-between gap-4">
+          <h2
+            id="buttons-title"
+            className="text-xl font-semibold text-foreground"
+          >
+            Buttons
+          </h2>
+          <p className="text-sm text-muted">
+            {buttonVariants.length} variants, {buttonSizes.length} sizes, and{" "}
+            {buttonRadii.length} radii available for review
+          </p>
+        </div>
+        <div className="mt-4 grid gap-4">
+          <ButtonReviewGroup label="Variants">
+            {buttonVariants.map((variant) => (
+              <Button key={variant} type="button" variant={variant}>
+                {formatTokenLabel(variant)}
+              </Button>
+            ))}
+          </ButtonReviewGroup>
+
+          <ButtonReviewGroup label="Sizes">
+            {buttonSizes.map((size) => (
+              <Button
+                key={size}
+                type="button"
+                size={size}
+                aria-label={size === "icon" ? "Icon size button" : undefined}
+              >
+                {size === "icon" ? (
+                  <span aria-hidden="true">+</span>
+                ) : (
+                  `${formatTokenLabel(size)} button`
+                )}
+              </Button>
+            ))}
+          </ButtonReviewGroup>
+
+          <ButtonReviewGroup label="Radii">
+            {buttonRadii.map((radius) => (
+              <Button key={radius} type="button" radius={radius}>
+                {formatTokenLabel(radius)}
+              </Button>
+            ))}
+          </ButtonReviewGroup>
+
+          <div className="rounded-xl border border-border bg-surface p-4">
+            <h3 className="text-sm font-semibold text-foreground">
+              Variant and size matrix
+            </h3>
+            <div className="mt-4 grid gap-3 md:grid-cols-3">
+              {buttonVariants.map((variant) => (
+                <div key={variant} className="space-y-3">
+                  <p className="text-xs font-semibold tracking-[0.12em] text-subtle uppercase">
+                    {variant}
+                  </p>
+                  <div className="flex flex-wrap items-center gap-3">
+                    {buttonSizes.map((size) => (
+                      <Button
+                        key={`${variant}-${size}`}
+                        type="button"
+                        variant={variant}
+                        size={size}
+                        aria-label={
+                          size === "icon"
+                            ? `${formatTokenLabel(variant)} icon button`
+                            : undefined
+                        }
+                      >
+                        {size === "icon" ? (
+                          <span aria-hidden="true">+</span>
+                        ) : (
+                          formatTokenLabel(size)
+                        )}
+                      </Button>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
     </main>
@@ -140,13 +243,34 @@ function ThemeSelectionButton({
   const isSelected = currentTheme === theme;
 
   return (
-    <button
+    <Button
       type="button"
       onClick={() => onSelect(theme)}
       aria-pressed={isSelected}
-      className={`rounded-md px-4 py-2 text-sm font-semibold capitalize transition-colors ${isSelected ? "bg-surface text-foreground shadow-sm" : "text-muted hover:text-foreground"}`}
+      variant={isSelected ? "secondary" : "ghost"}
+      radius="md"
+      className="capitalize"
     >
       {theme}
-    </button>
+    </Button>
   );
+}
+
+function ButtonReviewGroup({
+  children,
+  label,
+}: {
+  children: React.ReactNode;
+  label: string;
+}) {
+  return (
+    <div className="rounded-xl border border-border bg-surface p-4">
+      <h3 className="text-sm font-semibold text-foreground">{label}</h3>
+      <div className="mt-4 flex flex-wrap items-center gap-3">{children}</div>
+    </div>
+  );
+}
+
+function formatTokenLabel(token: string) {
+  return token.charAt(0).toUpperCase() + token.slice(1);
 }

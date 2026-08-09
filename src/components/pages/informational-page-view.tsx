@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { brand } from "@/config/brand";
+import { Button } from "@/components/shared/Button";
 import { IconComp } from "@/components/widgets/icon-comp";
 import type { InformationalPageData } from "@/data/pages_data";
 
@@ -31,13 +32,15 @@ export function InformationalPageView({ page }: InformationalPageViewProps) {
           {page.ctas && page.ctas.length > 0 && (
             <div className="mt-8 flex flex-wrap gap-3">
               {page.ctas.map((cta) => (
-                <a
+                <Button
                   key={cta.label}
                   href={cta.href}
-                  className={`rounded-lg px-5 py-3 font-semibold transition-transform hover:-translate-y-0.5 ${cta.kind === "primary" ? "bg-primary text-primary-foreground" : "border border-border bg-surface text-foreground hover:bg-surface-muted"}`}
+                  variant={cta.kind === "primary" ? "primary" : "secondary"}
+                  size="lg"
+                  radius="lg"
                 >
                   {cta.label}
-                </a>
+                </Button>
               ))}
             </div>
           )}
@@ -89,12 +92,6 @@ export function InformationalPageView({ page }: InformationalPageViewProps) {
             className="font-semibold text-primary hover:text-primary-hover"
           >
             Explore all services <span aria-hidden="true">→</span>
-          </Link>
-          <Link
-            href="/pricing"
-            className="font-semibold text-primary hover:text-primary-hover"
-          >
-            View pricing <span aria-hidden="true">→</span>
           </Link>
         </div>
       </section>

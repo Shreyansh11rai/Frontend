@@ -3,12 +3,9 @@
 import { useState } from "react";
 import Link from "next/link";
 import { brand } from "@/config/brand";
+import { Button } from "@/components/shared/Button";
 import { IconComp } from "@/components/widgets/icon-comp";
-import {
-  SERVICES_DATA,
-  type ServiceData,
-  type ServiceTier,
-} from "@/data/services_data";
+import { SERVICES_DATA, type ServiceData } from "@/data/services_data";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { submitPricingInterest } from "@/services/enquiryService";
 
@@ -20,12 +17,7 @@ interface ServicePageViewProps {
 export function ServicePageView({ service }: ServicePageViewProps) {
   useScrollReveal();
   const [isPricingOpen, setIsPricingOpen] = useState(false);
-  const [selectedTier, setSelectedTier] = useState<ServiceTier>("standard");
   const [statusMessage, setStatusMessage] = useState("");
-
-  const formattedPrice = new Intl.NumberFormat("en-IN", {
-    maximumFractionDigits: 0,
-  }).format(service.basePrice);
 
   async function handlePricingSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -35,8 +27,7 @@ export function ServicePageView({ service }: ServicePageViewProps) {
       company: String(form.get("company") ?? ""),
       contact: String(form.get("contact") ?? ""),
       serviceId: service.slug,
-      source: "service-page-pricing",
-      tier: selectedTier,
+      source: "service-page-quote",
     };
 
     await submitPricingInterest(payload);
@@ -106,19 +97,22 @@ export function ServicePageView({ service }: ServicePageViewProps) {
             {service.description}
           </p>
           <div className="mt-9 flex flex-wrap gap-3">
-            <button
+            <Button
               type="button"
               onClick={() => setIsPricingOpen(true)}
-              className="rounded-lg bg-primary px-5 py-3 font-semibold text-primary-foreground transition-transform hover:-translate-y-0.5"
+              size="lg"
+              radius="lg"
             >
               Get a Quote
-            </button>
-            <a
-              href="#pricing"
-              className="rounded-lg border border-border bg-surface px-5 py-3 font-semibold text-foreground hover:bg-surface-muted"
+            </Button>
+            <Button
+              href={`tel:${brand.contactNumber}`}
+              variant="secondary"
+              size="lg"
+              radius="lg"
             >
-              See Pricing
-            </a>
+              Call us
+            </Button>
           </div>
           {service.trustStats && service.trustStats.length > 0 && (
             <div className="mt-8 grid gap-3 sm:grid-cols-3">
@@ -141,9 +135,9 @@ export function ServicePageView({ service }: ServicePageViewProps) {
           data-reveal
           className="rounded-2xl border border-border bg-surface p-6 shadow-[0_18px_50px_-30px_rgb(var(--theme-shadow))]"
         >
-          <p className="text-sm font-semibold text-primary">Starting from</p>
+          <p className="text-sm font-semibold text-primary">Get a Quote</p>
           <p className="mt-2 text-3xl font-semibold text-foreground">
-            ₹{formattedPrice}
+            Scope first, quote next.
           </p>
           <p className="mt-3 text-sm leading-6 text-muted">
             {service.stat}. We will recommend the scope that best fits your next
@@ -287,7 +281,7 @@ export function ServicePageView({ service }: ServicePageViewProps) {
               <div className="absolute -right-8 -top-8 h-20 w-20 rounded-full bg-primary/10 blur-2xl" />
               <div className="flex items-center gap-3">
                 <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                  <IconComp name="pricing" className="h-5 w-5" />
+                  <IconComp name="compass" className="h-5 w-5" />
                 </span>
                 <p className="text-sm font-bold tracking-[.14em] text-primary uppercase">
                   Delivery clarity
@@ -313,80 +307,7 @@ export function ServicePageView({ service }: ServicePageViewProps) {
         </section>
       )}
 
-      {service.pricing && service.pricing.length > 0 && (
-        <section
-          id="pricing"
-          className="border-y border-border bg-surface-muted"
-        >
-          <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
-            <div className="flex items-center gap-3">
-              <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                <IconComp name="pricing" className="h-5 w-5" />
-              </span>
-              <p className="text-sm font-bold tracking-[.18em] text-primary uppercase">
-                Pricing ladder
-              </p>
-            </div>
-
-            <div className="mt-7 grid gap-4 lg:grid-cols-3">
-              {[...service.pricing]
-                .sort(
-                  (a, b) =>
-                    Number(a.tier === "standard") -
-                    Number(b.tier === "standard"),
-                )
-                .map((tier) => (
-                  <article
-                    key={tier.tier}
-                    className={`relative rounded-2xl border p-6 ${tier.highlighted ? "border-primary bg-surface shadow-[0_20px_60px_-35px_rgb(var(--theme-shadow))]" : "border-border bg-surface"}`}
-                  >
-                    {tier.highlighted && (
-                      <span className="absolute right-4 top-4 rounded-full bg-primary px-3 py-1 text-[10px] font-bold tracking-[.14em] text-primary-foreground uppercase">
-                        Most Popular
-                      </span>
-                    )}
-                    <p className="text-sm font-semibold text-primary uppercase">
-                      {tier.tier}
-                    </p>
-                    <p className="mt-4 text-4xl font-semibold text-foreground">
-                      ₹{tier.price.toLocaleString("en-IN")}
-                    </p>
-                    <ul className="mt-6 space-y-3 text-sm text-muted">
-                      {tier.features.map((feature) => (
-                        <li key={feature} className="flex items-start gap-3">
-                          <span className="mt-1 inline-flex h-2.5 w-2.5 rounded-full bg-primary" />
-                          <span>{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setSelectedTier(tier.tier);
-                        setIsPricingOpen(true);
-                      }}
-                      className={`mt-6 w-full rounded-lg px-4 py-3 font-semibold ${tier.highlighted ? "bg-primary text-primary-foreground" : "border border-border bg-surface text-foreground hover:bg-surface-muted"}`}
-                    >
-                      {tier.tier === "premium"
-                        ? "Get Premium"
-                        : tier.tier === "basic"
-                          ? "Choose Basic"
-                          : "Choose Standard"}
-                    </button>
-                  </article>
-                ))}
-            </div>
-
-            <div className="mt-6 rounded-xl border border-border bg-surface p-4 text-sm text-muted">
-              <p className="font-semibold text-foreground">Pricing note</p>
-              <p className="mt-2">
-                Standard plans are visually emphasized to encourage the midpoint
-                option while keeping the ladder transparent and easy to compare.
-              </p>
-            </div>
-          </div>
-        </section>
-      )}
+      {/* TODO: Restore the pricing ladder section when public pricing is ready. */}
 
       {service.testimonials && service.testimonials.length > 0 && (
         <section className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
@@ -407,6 +328,11 @@ export function ServicePageView({ service }: ServicePageViewProps) {
                 <p className="text-xs font-semibold tracking-[.14em] text-subtle uppercase">
                   {item.placeholder ? "Placeholder" : "Client"}
                 </p>
+                {item.rating && (
+                  <p className="mt-3 text-sm font-semibold text-warning">
+                    {item.rating}/5 stars
+                  </p>
+                )}
                 <h3 className="mt-3 text-lg font-semibold text-foreground">
                   {item.name}
                 </h3>
@@ -459,19 +385,22 @@ export function ServicePageView({ service }: ServicePageViewProps) {
             guide the cleanest path.
           </h2>
           <div className="mt-7 flex flex-wrap gap-3">
-            <button
+            <Button
               type="button"
               onClick={() => setIsPricingOpen(true)}
-              className="rounded-lg bg-primary px-5 py-3 font-semibold text-primary-foreground"
+              size="lg"
+              radius="lg"
             >
               Get a Quote
-            </button>
-            <a
-              href={`mailto:${brand.contactEmail}?subject=${encodeURIComponent(`${service.name} enquiry`)}`}
-              className="rounded-lg border border-border bg-surface px-5 py-3 font-semibold text-foreground hover:bg-surface-muted"
+            </Button>
+            <Button
+              href={`tel:${brand.contactNumber}`}
+              variant="secondary"
+              size="lg"
+              radius="lg"
             >
-              Email us
-            </a>
+              Call us
+            </Button>
           </div>
         </div>
       </section>
@@ -494,13 +423,14 @@ export function ServicePageView({ service }: ServicePageViewProps) {
                   {service.name}
                 </h3>
               </div>
-              <button
+              <Button
                 type="button"
                 onClick={() => setIsPricingOpen(false)}
-                className="rounded-full border border-border px-3 py-1 text-sm text-muted"
+                variant="ghost"
+                size="sm"
               >
                 Close
-              </button>
+              </Button>
             </div>
 
             <form onSubmit={handlePricingSubmit} className="mt-6 space-y-4">
@@ -522,28 +452,9 @@ export function ServicePageView({ service }: ServicePageViewProps) {
                 </span>
                 <input name="contact" required className="ui-input" />
               </label>
-              <label className="block text-sm text-muted">
-                <span className="mb-2 block font-semibold text-foreground">
-                  Tier
-                </span>
-                <select
-                  value={selectedTier}
-                  onChange={(event) =>
-                    setSelectedTier(event.target.value as ServiceTier)
-                  }
-                  className="ui-input"
-                >
-                  <option value="basic">Basic</option>
-                  <option value="standard">Standard</option>
-                  <option value="premium">Premium</option>
-                </select>
-              </label>
-              <button
-                type="submit"
-                className="w-full rounded-xl bg-primary px-4 py-3 font-semibold text-primary-foreground"
-              >
-                Request pricing
-              </button>
+              <Button type="submit" size="lg" radius="xl" className="w-full">
+                Get quote
+              </Button>
             </form>
           </div>
         </div>

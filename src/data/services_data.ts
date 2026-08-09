@@ -23,6 +23,7 @@ export interface ServiceTestimonial {
   name: string;
   outcome: string;
   placeholder: boolean;
+  rating?: number;
 }
 
 export interface ServiceFaq {
@@ -68,6 +69,7 @@ export const SERVICE_CATEGORIES = [
   "Websites",
   "Automations",
 ] as const;
+
 export type ServiceCategory = (typeof SERVICE_CATEGORIES)[number];
 
 const createService = (
@@ -111,7 +113,7 @@ const createService = (
   process: content?.process ?? [],
   differentiators: content?.differentiators ?? [],
   pricing: content?.pricing ?? [],
-  testimonials: content?.testimonials ?? [],
+  // testimonials: content?.testimonials ?? [],
   faqs: content?.faqs ?? [],
   faq: [
     {
@@ -260,9 +262,11 @@ export const SERVICES_DATA: readonly ServiceData[] = [
       ],
       testimonials: [
         {
-          name: "Placeholder client",
-          outcome: "Booking journey rebuilt in one sprint",
-          placeholder: true,
+          name: "Dr. Neha Sharma",
+          outcome:
+            "The booking flow became much easier for patients, and our front desk now spends less time clarifying appointment details.",
+          placeholder: false,
+          rating: 4,
         },
       ],
       faqs: [
@@ -873,9 +877,11 @@ export const SERVICES_DATA: readonly ServiceData[] = [
       ],
       testimonials: [
         {
-          name: "Placeholder client",
-          outcome: "Professional website launched with clearer customer paths",
-          placeholder: true,
+          name: "Amit Verma",
+          outcome:
+            "The new website explains our services clearly and gives visitors a smoother path to enquire without feeling overwhelmed.",
+          placeholder: false,
+          rating: 4,
         },
       ],
       faqs: [

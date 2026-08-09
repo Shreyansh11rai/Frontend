@@ -13,7 +13,8 @@ import {
 } from "@/data/navigation_data";
 import type { ServiceCategory } from "@/data/services_data";
 import { ThemeToggle } from "./theme-toggle";
-import GlassSurface from "../shared/GlassSurfaceComp";
+import { Button } from "@/components/shared/Button";
+import Image from "next/image";
 
 type ServiceTab = (typeof SERVICE_CATEGORY_TABS)[number];
 
@@ -74,21 +75,14 @@ export function Header() {
       className="sticky top-0 left-0 z-50 border-b border-border/80 shadow-sm bg-surface-muted"
     >
       <div className="mx-auto flex w-full max-w-7xl items-center gap-3 px-4 py-3 sm:px-6 lg:px-8">
-        <Link
-          className="shrink-0 text-xl font-bold tracking-tight text-foreground"
-          href="/"
-          aria-label={`${brand.name} home`}
-        >
-          {brand.shortName}
-          <span className="text-primary">.</span>
-        </Link>
+        <LOGO />
         <nav
           className="flex items-center gap-1"
           aria-label="Primary navigation"
         >
-          <button
+          <Button
             type="button"
-            className="ui-button ui-button-secondary"
+            variant="secondary"
             aria-expanded={isServicesOpen}
             aria-controls="services-directory"
             onClick={toggleServices}
@@ -98,7 +92,7 @@ export function Header() {
               name="chevron"
               className={`h-4 w-4 transition-transform ${isServicesOpen ? "rotate-180" : ""}`}
             />
-          </button>
+          </Button>
           {PAGE_NAVIGATION.filter((item) => item.label !== "Theme review").map(
             (item) => {
               const isActive =
@@ -117,9 +111,10 @@ export function Header() {
           )}
         </nav>
         <div className="ml-auto flex items-center gap-2">
-          <button
+          <Button
             type="button"
-            className="ui-button ui-button-secondary h-10 sm:w-48"
+            variant="secondary"
+            className="h-10 sm:w-48"
             aria-expanded={isSearchOpen}
             aria-controls="site-search"
             onClick={openSearch}
@@ -127,7 +122,7 @@ export function Header() {
             <IconComp name="search" className="h-4 w-4 shrink-0" />
             <span className="hidden sm:inline">Search services</span>
             <span className="sm:hidden">Search</span>
-          </button>
+          </Button>
           <ThemeToggle />
         </div>
       </div>
@@ -199,13 +194,15 @@ function ServicesDirectory({
               Choose a solution for the work in front of you.
             </p>
           </div>
-          <Link
+          <Button
             href="/#services"
             onClick={onNavigate}
-            className="hidden text-sm font-semibold text-primary hover:text-primary-hover sm:block"
+            variant="ghost"
+            size="sm"
+            className="hidden border-transparent text-primary shadow-none hover:text-primary-hover sm:inline-flex"
           >
             View all on home <span aria-hidden="true">→</span>
-          </Link>
+          </Button>
         </div>
         <div
           className="mt-5 flex gap-2 overflow-x-auto pb-1"
@@ -213,16 +210,18 @@ function ServicesDirectory({
           aria-label="Service categories"
         >
           {SERVICE_CATEGORY_TABS.map((tab) => (
-            <button
+            <Button
               key={tab}
               type="button"
+              variant={activeTab === tab ? "primary" : "secondary"}
+              size="md"
               role="tab"
               aria-selected={activeTab === tab}
-              className={`shrink-0 rounded-full px-4 py-2 text-sm font-semibold transition-colors ${activeTab === tab ? "bg-primary text-primary-foreground" : "bg-surface-muted text-muted hover:bg-border hover:text-foreground"}`}
+              className="shrink-0"
               onClick={() => onSelectTab(tab)}
             >
               {tab}
-            </button>
+            </Button>
           ))}
         </div>
         <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4 overflow-y-auto max-h-[55vh]">
@@ -482,3 +481,26 @@ function Icon({
     </svg>
   );
 }
+
+export const LOGO = ({
+  brandNameClass,
+  logoClass,
+}: {
+  brandNameClass?: string | null;
+  logoClass?: string | null;
+}) => {
+  return (
+    <div className="flex items-center gap-2">
+      <Image
+        alt="logo-image"
+        width={35}
+        height={35}
+        className={`object-cover ${logoClass}`}
+        src="/web-app-manifest-192x192.png"
+      ></Image>
+      <Link href="/" className={`text-xl font-semibold ${brandNameClass}`}>
+        DoomSphere
+      </Link>
+    </div>
+  );
+};
