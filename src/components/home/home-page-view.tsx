@@ -1,10 +1,13 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { HOME_PAGE_DATA } from "@/data/home_page_data";
 import { SERVICES_DATA } from "@/data/services_data";
+import { HOME_TESTIMONIALS } from "@/data/testimonials_data";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { IconComp } from "@/components/widgets/icon-comp";
+import { Button } from "@/components/shared/Button";
 
 /** Static marketing homepage assembled from the service catalogue. */
 export function HomePageView() {
@@ -27,18 +30,17 @@ export function HomePageView() {
               {hero.description}
             </p>
             <div className="mt-10 flex flex-wrap gap-3">
-              <Link
-                href={hero.primaryCta.href}
-                className="rounded-lg bg-primary px-5 py-3 font-semibold text-primary-foreground transition-transform hover:-translate-y-0.5"
-              >
+              <Button href={hero.primaryCta.href} size="lg" radius="lg">
                 {hero.primaryCta.label}
-              </Link>
-              <Link
+              </Button>
+              <Button
                 href={hero.secondaryCta.href}
-                className="rounded-lg border border-border bg-surface px-5 py-3 font-semibold text-foreground hover:bg-surface-muted"
+                variant="secondary"
+                size="lg"
+                radius="lg"
               >
                 {hero.secondaryCta.label}
-              </Link>
+              </Button>
             </div>
             <div className="mt-10 grid gap-4 sm:grid-cols-3">
               {proofCards.map((item) => (
@@ -223,6 +225,7 @@ export function HomePageView() {
               <p className="relative mt-2 text-sm leading-6 text-muted">
                 {service.summary}
               </p>
+              {/* TODO: Remove this and add a arrow to represent new page */}
               <p className="relative mt-5 text-sm font-semibold text-foreground group-hover:text-primary">
                 Explore service <span aria-hidden="true">→</span>
               </p>
@@ -253,6 +256,69 @@ export function HomePageView() {
         </div>
       </section>
 
+      <section className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
+        <div className="max-w-2xl">
+          <p className="text-sm font-bold tracking-[.18em] text-primary uppercase">
+            Customer stories
+          </p>
+          <h2 className="mt-3 text-3xl font-semibold tracking-tight text-foreground">
+            Business owners who got clearer digital paths.
+          </h2>
+        </div>
+        <div className="mt-10 grid gap-4 md:grid-cols-3">
+          {HOME_TESTIMONIALS.map((testimonial) => (
+            <article
+              key={testimonial.name}
+              className="group relative overflow-hidden rounded-xl border border-border bg-surface p-6 transition duration-200 hover:-translate-y-1 hover:shadow-lg"
+            >
+              <div className="absolute -right-8 -top-8 h-20 w-20 rounded-full bg-primary/10 blur-2xl" />
+              <div className="relative flex items-center gap-4">
+                {testimonial.image ? (
+                  <Image
+                    src={testimonial.image.src}
+                    alt={testimonial.image.alt}
+                    width={64}
+                    height={64}
+                    className="h-16 w-16 rounded-xl object-cover"
+                  />
+                ) : (
+                  <div className="flex h-16 w-16 items-center justify-center rounded-xl bg-primary/10 text-lg font-semibold text-primary">
+                    {getInitials(testimonial.name)}
+                  </div>
+                )}
+                <div>
+                  <h3 className="text-lg font-semibold text-foreground">
+                    {testimonial.name}
+                  </h3>
+                  <p className="mt-1 text-sm text-muted">
+                    {testimonial.businessType}
+                  </p>
+                </div>
+              </div>
+              <div
+                className="relative mt-5 flex gap-1 text-warning"
+                aria-label={`${testimonial.rating} out of 5 stars`}
+              >
+                {Array.from({ length: 5 }, (_, index) => (
+                  <span
+                    key={`${testimonial.name}-star-${index}`}
+                    aria-hidden="true"
+                    className={
+                      index < testimonial.rating ? "opacity-100" : "opacity-25"
+                    }
+                  >
+                    ★
+                  </span>
+                ))}
+              </div>
+              <p className="relative mt-4 text-sm leading-6 text-muted">
+                {testimonial.quote}
+              </p>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <section className="mx-auto max-w-7xl flex items-center gap-10 flex-wrap justify-between px-6 py-20 lg:px-8">
         <div className="rounded-2xl px-7 py-12 sm:px-12">
           <p className="text-sm font-bold text-primary tracking-[.18em] uppercase">
@@ -260,12 +326,15 @@ export function HomePageView() {
           </p>
           <h2 className="mt-3 max-w-2xl text-3xl font-semibold">{cta.title}</h2>
           <div className="mt-7 flex flex-wrap gap-3">
-            <Link
+            <Button
               href={cta.primaryCta.href}
-              className="rounded-lg border border-border/40 px-5 py-3 font-semibold text-primary hover:bg-surface/20"
+              variant="secondary"
+              size="lg"
+              radius="lg"
+              className="border-border/40 text-primary hover:bg-surface/20"
             >
               {cta.primaryCta.label}
-            </Link>
+            </Button>
           </div>
         </div>
         <div className="h-60">
@@ -278,4 +347,13 @@ export function HomePageView() {
       </section>
     </main>
   );
+}
+
+function getInitials(name: string) {
+  return name
+    .split(" ")
+    .map((part) => part.charAt(0))
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
 }

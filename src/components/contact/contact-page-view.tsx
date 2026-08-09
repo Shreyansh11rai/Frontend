@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Button } from "@/components/shared/Button";
 import { IconComp } from "@/components/widgets/icon-comp";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { submitBookingRequest } from "@/services/enquiryService";
@@ -123,12 +124,9 @@ export function ContactPageView() {
               />
             </label>
           </div>
-          <button
-            type="submit"
-            className="mt-6 rounded-xl bg-primary px-5 py-3 font-semibold text-primary-foreground"
-          >
+          <Button type="submit" size="lg" radius="xl" className="mt-6">
             Request a call
-          </button>
+          </Button>
           {statusMessage && (
             <p className="mt-4 text-sm font-semibold text-success">
               {statusMessage}

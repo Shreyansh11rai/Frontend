@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { PricingPageView } from "@/components/pricing/pricing-page-view";
 
 export const metadata: Metadata = {
-  title: "Pricing",
+  title: "Get a Quote",
   description:
-    "Transparent starting prices for websites, WhatsApp automation, and business support services.",
+    "Request a tailored quote for websites, WhatsApp automation, and business support services.",
   alternates: { canonical: "/pricing" },
 };
 

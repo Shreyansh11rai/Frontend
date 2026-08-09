@@ -1,0 +1,150 @@
+{
+  "currency": "INR",
+  "categories": {
+    "static_website": {
+      "label": "Static Website",
+      "items": [
+        { "id": "home_about", "name": "Home + About", "price": 10000 },
+        { "id": "services", "name": "Services", "price": 5000 },
+        { "id": "shop", "name": "Shop (no payment gateway)", "price": 9000 },
+        {
+          "id": "testimonials",
+          "name": "Testimonials (Video + Audio)",
+          "price": 6000
+        },
+        {
+          "id": "blog_frontend",
+          "name": "Blog (frontend display)",
+          "price": 5000
+        },
+        { "id": "contact", "name": "Contact", "price": 4000 },
+        { "id": "booking_ui", "name": "Booking UI", "price": 8000 }
+      ],
+      "solo_total": 47000,
+      "bundle_price": 32000,
+      "bundle_label": "All 8 pages bundled"
+    },
+    "dashboard": {
+      "label": "Dashboard",
+      "items": [
+        { "id": "theme_editor", "name": "Theme editor", "price": 8000 },
+        { "id": "content_editor", "name": "Content editor", "price": 8000 },
+        {
+          "id": "blog_manager",
+          "name": "Blog manager (CRUD + scheduling)",
+          "price": 10000
+        },
+        { "id": "booking_manager", "name": "Booking manager", "price": 9000 },
+        { "id": "inquiry_manager", "name": "Inquiry manager", "price": 5000 },
+        { "id": "shop_manager", "name": "Shop/product manager", "price": 9000 },
+        {
+          "id": "website_analytics",
+          "name": "Website analytics",
+          "price": 6000
+        },
+        { "id": "data_analytics", "name": "Data analytics", "price": 7000 }
+      ],
+      "solo_total": 62000,
+      "bundle_price": 45000,
+      "bundle_label": "All 8 modules bundled"
+    },
+    "integrations": {
+      "label": "Integrations",
+      "note": "Never bundled — always sold solo",
+      "items": [
+        {
+          "id": "whatsapp_booking",
+          "name": "WhatsApp booking API",
+          "price": 15000,
+          "recurring_note": "Client pays Meta's per-conversation fees separately"
+        },
+        {
+          "id": "whatsapp_chatbot",
+          "name": "WhatsApp Q&A/chatbot",
+          "price": 10000
+        }
+      ]
+    },
+    "add_ons_missing_from_original_list": {
+      "label": "Suggested add-ons (not in your original scope — worth offering)",
+      "items": [
+        {
+          "id": "domain_setup",
+          "name": "Domain purchase & DNS setup (one-time)",
+          "price": 1500
+        },
+        {
+          "id": "hosting_setup",
+          "name": "Hosting + server setup (one-time)",
+          "price": 3000
+        },
+        {
+          "id": "hosting_annual",
+          "name": "Hosting (annual, if you manage it)",
+          "price": 6000
+        },
+        {
+          "id": "payment_gateway",
+          "name": "Payment gateway integration (Razorpay/PhonePe) for Shop",
+          "price": 8000
+        },
+        { "id": "basic_seo", "name": "Basic on-page SEO setup", "price": 5000 },
+        {
+          "id": "ssl_security",
+          "name": "SSL + basic security hardening",
+          "price": 2000
+        },
+        {
+          "id": "google_business",
+          "name": "Google Business Profile setup & review sync",
+          "price": 3000
+        },
+        {
+          "id": "content_writing",
+          "name": "Copywriting (per page, if client has no content)",
+          "price": 1500,
+          "unit": "per page"
+        }
+      ]
+    }
+  },
+  "packages": [
+    {
+      "id": "static_only",
+      "name": "Static Only",
+      "includes": ["static_website"],
+      "price": 32000
+    },
+    {
+      "id": "growth",
+      "name": "Static + Dashboard",
+      "includes": ["static_website", "dashboard"],
+      "solo_equivalent": 77000,
+      "price": 68000
+    },
+    {
+      "id": "full_suite",
+      "name": "Full Suite (Static + Dashboard + WhatsApp)",
+      "includes": ["static_website", "dashboard", "integrations"],
+      "price": 93000
+    }
+  ],
+  "recurring": {
+    "maintenance_retainer": {
+      "name": "Monthly maintenance retainer",
+      "price_min": 4000,
+      "price_max": 6000,
+      "unit": "per month",
+      "covers": "updates, bug fixes, hosting management, minor content changes"
+    }
+  },
+  "exclusions": [
+    "Domain & hosting annual renewal costs (unless add-on selected)",
+    "Payment gateway integration (unless add-on selected)",
+    "Content writing / copywriting (unless add-on selected)",
+    "Stock photography / professional photography",
+    "Meta WhatsApp API conversation charges (billed to client directly)",
+    "Third-party paid tools/subscriptions (e.g. premium analytics)",
+    "GST (add separately per your registration status)"
+  ]
+}

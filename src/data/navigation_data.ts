@@ -29,12 +29,6 @@ export const PAGE_NAVIGATION: readonly NavigationItem[] = [
     icon: "about",
   },
   {
-    href: "/pricing",
-    label: "Pricing",
-    description: "Review starting plans.",
-    icon: "service",
-  },
-  {
     href: "/contact-us",
     label: "Contact us",
     description: "Start a conversation.",

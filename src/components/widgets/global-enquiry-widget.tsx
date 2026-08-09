@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { Button } from "@/components/shared/Button";
 import { SERVICES_DATA } from "@/data/services_data";
 import { submitEnquiry } from "@/services/enquiryService";
 import { brand } from "@/config/brand";
@@ -49,19 +50,12 @@ export function GlobalEnquiryWidget() {
 
   return (
     <div className="fixed bottom-4 right-4 z-[70] flex items-center gap-2">
-      <a
-        href={`tel:${brand.contactNumber}`}
-        className="ui-button ui-button-secondary"
-      >
+      <Button href={`tel:${brand.contactNumber}`} variant="secondary">
         <IoCall /> {brand.contactNumber}
-      </a>
-      <button
-        type="button"
-        onClick={() => setIsOpen(true)}
-        className="ui-button ui-button-primary"
-      >
+      </Button>
+      <Button type="button" onClick={() => setIsOpen(true)}>
         Enquiry
-      </button>
+      </Button>
 
       {isOpen && (
         <div className="fixed inset-0 z-[80] flex items-center justify-center bg-slate-950/40 py-10 px-4 backdrop-blur-sm">
@@ -76,13 +70,13 @@ export function GlobalEnquiryWidget() {
                     Tell us where you need help.
                   </h3>
                 </div>
-                <button
+                <Button
                   type="button"
                   onClick={() => setIsOpen(false)}
-                  className="ui-button ui-button-ghost"
+                  variant="ghost"
                 >
                   Close
-                </button>
+                </Button>
               </div>
             </div>
 
@@ -125,11 +119,17 @@ export function GlobalEnquiryWidget() {
                 </p>
                 <div className="grid gap-2 sm:grid-cols-2">
                   {SERVICES_DATA.map((service) => (
-                    <button
+                    <Button
                       key={service.slug}
                       type="button"
                       onClick={() => setSelectedService(service.slug)}
-                      className={`rounded-xl border px-3 py-3 text-left ${selectedService === service.slug ? "border-primary bg-primary/10" : "border-border bg-surface"}`}
+                      variant={
+                        selectedService === service.slug
+                          ? "primary"
+                          : "secondary"
+                      }
+                      radius="xl"
+                      className={`justify-start text-left ${selectedService === service.slug ? "bg-primary/10 text-foreground" : ""}`}
                     >
                       <span className="block text-sm font-semibold text-foreground">
                         {service.name}
@@ -137,7 +137,7 @@ export function GlobalEnquiryWidget() {
                       <span className="mt-1 block text-xs text-muted">
                         {service.summary}
                       </span>
-                    </button>
+                    </Button>
                   ))}
                 </div>
               </div>
@@ -152,12 +152,9 @@ export function GlobalEnquiryWidget() {
                   className="ui-input"
                 />
               </label>
-              <button
-                type="submit"
-                className="ui-button ui-button-primary sm:col-span-2"
-              >
+              <Button type="submit" className="sm:col-span-2">
                 Send enquiry
-              </button>
+              </Button>
             </form>
 
             {statusMessage && (
