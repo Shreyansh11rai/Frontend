@@ -486,8 +486,8 @@ export const LOGO = ({
   brandNameClass,
   logoClass,
 }: {
-  brandNameClass: string | null;
-  logoClass: string | null;
+  brandNameClass?: string | null;
+  logoClass?: string | null;
 }) => {
   return (
     <div className="flex items-center gap-2">
