@@ -14,6 +14,7 @@ import {
 import type { ServiceCategory } from "@/data/services_data";
 import { ThemeToggle } from "./theme-toggle";
 import { Button } from "@/components/shared/Button";
+import Image from "next/image";
 
 type ServiceTab = (typeof SERVICE_CATEGORY_TABS)[number];
 
@@ -74,14 +75,7 @@ export function Header() {
       className="sticky top-0 left-0 z-50 border-b border-border/80 shadow-sm bg-surface-muted"
     >
       <div className="mx-auto flex w-full max-w-7xl items-center gap-3 px-4 py-3 sm:px-6 lg:px-8">
-        <Link
-          className="shrink-0 text-xl font-bold tracking-tight text-foreground"
-          href="/"
-          aria-label={`${brand.name} home`}
-        >
-          {brand.shortName}
-          <span className="text-primary">.</span>
-        </Link>
+        <LOGO />
         <nav
           className="flex items-center gap-1"
           aria-label="Primary navigation"
@@ -487,3 +481,26 @@ function Icon({
     </svg>
   );
 }
+
+export const LOGO = ({
+  brandNameClass,
+  logoClass,
+}: {
+  brandNameClass: string | null;
+  logoClass: string | null;
+}) => {
+  return (
+    <div className="flex items-center gap-2">
+      <Image
+        alt="logo-image"
+        width={35}
+        height={35}
+        className={`object-cover ${logoClass}`}
+        src="/web-app-manifest-192x192.png"
+      ></Image>
+      <Link href="/" className={`text-xl font-semibold ${brandNameClass}`}>
+        DoomSphere
+      </Link>
+    </div>
+  );
+};

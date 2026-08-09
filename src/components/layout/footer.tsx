@@ -3,6 +3,7 @@ import { brand } from "@/config/brand";
 import { PAGE_NAVIGATION } from "@/data/navigation_data";
 import { BiCalendar, BiLinkExternal } from "react-icons/bi";
 import { IoCallOutline } from "react-icons/io5";
+import { LOGO } from "./header";
 
 export function Footer() {
   const footerPageLinks = PAGE_NAVIGATION.filter(
@@ -16,13 +17,13 @@ export function Footer() {
           <div className="flex items-center gap-4">
             <span
               aria-hidden="true"
-              className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-primary text-base font-bold tracking-tight text-primary-foreground shadow-sm"
+              className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl text-base font-bold tracking-tight text-primary-foreground shadow-sm"
             >
-              {brand.shortName}
+              <LOGO brandNameClass={"hidden"} />
             </span>
             <div>
               <p className="text-base font-bold tracking-tight text-foreground">
-                {brand.name}
+                DoomSphere
               </p>
               <p className="mt-0.5 text-sm text-muted">
                 Digital solutions with measurable momentum.
