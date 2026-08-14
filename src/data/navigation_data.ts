@@ -12,7 +12,6 @@ export type NavigationIcon =
   | "contact"
   | "faq"
   | "home"
-  | "palette"
   | "service";
 
 export const PAGE_NAVIGATION: readonly NavigationItem[] = [
@@ -39,12 +38,6 @@ export const PAGE_NAVIGATION: readonly NavigationItem[] = [
     label: "FAQ",
     description: "Find useful answers.",
     icon: "faq",
-  },
-  {
-    href: "/theme-review",
-    label: "Theme review",
-    description: "Preview interface themes.",
-    icon: "palette",
   },
 ];
 

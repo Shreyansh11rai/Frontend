@@ -29,9 +29,7 @@ export function Header() {
   const searchInputRef = useRef<HTMLInputElement>(null);
   const services = getServicesForCategory(activeTab);
   const searchResults = useMemo(() => getSearchResults(query), [query]);
-  const mobilePageLinks = PAGE_NAVIGATION.filter(
-    (item) => item.label !== "Theme review",
-  );
+  const mobilePageLinks = PAGE_NAVIGATION;
 
   useEffect(() => {
     function closeOnOutsideClick(event: MouseEvent) {
@@ -94,22 +92,20 @@ export function Header() {
               className={`h-4 w-4 transition-transform ${isServicesOpen ? "rotate-180" : ""}`}
             />
           </Button>
-          {PAGE_NAVIGATION.filter((item) => item.label !== "Theme review").map(
-            (item) => {
-              const isActive =
-                pathname === item.href ||
-                (item.href !== "/" && pathname.startsWith(item.href));
-              return (
-                <Link
-                  key={item.href}
-                  className={` hidden rounded-full px-3 py-2 text-sm font-semibold transition-colors lg:inline-flex ${isActive ? "bg-primary text-primary-foreground" : "text-muted hover:bg-surface-muted hover:text-foreground"}`}
-                  href={item.href}
-                >
-                  {item.label}
-                </Link>
-              );
-            },
-          )}
+          {PAGE_NAVIGATION.map((item) => {
+            const isActive =
+              pathname === item.href ||
+              (item.href !== "/" && pathname.startsWith(item.href));
+            return (
+              <Link
+                key={item.href}
+                className={` hidden rounded-full px-3 py-2 text-sm font-semibold transition-colors lg:inline-flex ${isActive ? "bg-primary text-primary-foreground" : "text-muted hover:bg-surface-muted hover:text-foreground"}`}
+                href={item.href}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
         </nav>
         <div className="ml-auto flex items-center gap-2">
           <Button
