@@ -10,10 +10,11 @@ export const brand = {
   whatsapp: "+919044483322",
   offer: {
     eyebrow: "Independence Day Offer",
-    title: "Give your business the freedom to go digital",
+    title:
+      "Give your business the freedom to go digital with upto 40% off on plans",
     description:
       "Launch with website, WhatsApp, enquiry, and automation bundles built for faster customer action.",
-    ctaLabel: "Download offers PDF",
-    ctaHref: "/offers/independence-day-digital-offer.pdf",
+    ctaLabel: "See plans",
+    ctaHref: "/pdfs/plans-and-pricing-independence-day.pdf",
   },
 } as const;
