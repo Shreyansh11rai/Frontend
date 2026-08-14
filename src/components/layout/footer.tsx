@@ -13,7 +13,7 @@ export function Footer() {
   return (
     <footer className="border-t border-border bg-surface">
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-        <div className="flex flex-col gap-6 border-b border-border pb-7 sm:flex-row sm:items-center sm:justify-between">
+        <div className="border-b border-border pb-7 *:w-full grid grid-cols-2  md:grid-cols-4 gap-3">
           <div className="flex items-center gap-4">
             <span
               aria-hidden="true"
@@ -43,7 +43,7 @@ export function Footer() {
               <span className="block text-xs font-semibold tracking-[0.12em] text-subtle uppercase">
                 Start a conversation
               </span>
-              <span className="mt-0.5 block text-sm font-semibold text-foreground group-hover:text-primary">
+              <span className="mt-0.5 hidden md:block text-sm font-semibold text-foreground group-hover:text-primary">
                 {brand.contactEmail}
               </span>
             </span>

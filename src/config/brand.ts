@@ -8,4 +8,12 @@ export const brand = {
   contactEmail: "hello@doomsphere.com",
   contactNumber: "+918858191942",
   whatsapp: "+919044483322",
+  offer: {
+    eyebrow: "Independence Day Offer",
+    title: "Give your business the freedom to go digital",
+    description:
+      "Launch with website, WhatsApp, enquiry, and automation bundles built for faster customer action.",
+    ctaLabel: "Download offers PDF",
+    ctaHref: "/offers/independence-day-digital-offer.pdf",
+  },
 } as const;

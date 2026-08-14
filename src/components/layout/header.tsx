@@ -74,8 +74,9 @@ export function Header() {
       ref={headerRef}
       className="sticky top-0 left-0 z-50 border-b border-border/80 shadow-sm bg-surface-muted"
     >
+      <OfferBanner />
       <div className="mx-auto flex w-full max-w-7xl items-center gap-3 px-4 py-3 sm:px-6 lg:px-8">
-        <LOGO />
+        <LOGO brandNameClass={"hidden sm:block"} />
         <nav
           className="flex items-center gap-1"
           aria-label="Primary navigation"
@@ -163,6 +164,38 @@ export function Header() {
         </div>
       </div>
     </header>
+  );
+}
+
+function OfferBanner() {
+  const offer = brand.offer;
+
+  return (
+    <div className="site-offer-bar">
+      <div className="mx-auto flex w-full max-w-7xl flex-col gap-2 px-4 py-2 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
+        <div className="flex min-w-0 items-start gap-3 md:items-center">
+          <span className="site-offer-icon">
+            <IconComp name="spark" className="h-4 w-4" />
+          </span>
+          <p className="min-w-0 text-sm leading-5 text-foreground">
+            <span className="font-bold text-primary">{offer.eyebrow}: </span>
+            <span className="font-semibold">{offer.title}</span>
+            <span className="hidden text-muted sm:inline">
+              {" "}
+              - {offer.description}
+            </span>
+          </p>
+        </div>
+        <a
+          className="site-offer-link"
+          download
+          href={offer.ctaHref}
+        >
+          {offer.ctaLabel}
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
   );
 }
 
