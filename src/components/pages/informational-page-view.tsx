@@ -10,15 +10,15 @@ interface InformationalPageViewProps {
 
 export function InformationalPageView({ page }: InformationalPageViewProps) {
   return (
-    <main>
+    <main className="">
       {/* <section className="mx-auto grid grid-cols-6 gap-10 max-w-7xl px-6 py-20 sm:py-28 lg:px-8"> */}
-      <section className="mx-auto max-w-7xl px-6 py-20 sm:py-28 lg:px-8">
+      <section className="mx-auto max-w-7xl px-6 py-20 sm:py-28 lg:px-8 flex items-center justify-between gap-10">
         <div className="">
           <div className="flex items-center gap-3">
             <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary">
-              <IconComp name={page.icon ?? "service"} className="h-5 w-5" />
+              <IconComp name={page.icon ?? "service"} className="h-7 w-7" />
             </span>
-            <p className="text-sm font-bold tracking-[.18em] text-primary uppercase">
+            <p className="text-lg font-bold tracking-[.18em] text-primary uppercase">
               {page.eyebrow}
             </p>
           </div>
@@ -45,13 +45,15 @@ export function InformationalPageView({ page }: InformationalPageViewProps) {
             </div>
           )}
         </div>
-        {/* <div className="w-70 col-start-5 flex items-center justify-end col-span-1">
-          <img
-            src="/svg/business-plan.svg"
-            alt="person planning business"
-            className="object-cover w-full"
-          />
-        </div> */}
+        {page.image && (
+          <div className="w-90 col-start-5 flex items-center justify-end col-span-1">
+            <img
+              src={`/svg/${page.image}`}
+              alt="person planning business"
+              className="object-cover w-full"
+            />
+          </div>
+        )}
       </section>
 
       <section className="border-y border-border bg-surface-muted">
@@ -65,16 +67,16 @@ export function InformationalPageView({ page }: InformationalPageViewProps) {
                 <div className="absolute -right-8 -top-8 h-20 w-20 rounded-full bg-primary/10 blur-2xl" />
                 <div className="relative flex items-start gap-3">
                   <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                    <IconComp name={section.icon} className="h-5 w-5" />
+                    <IconComp name={section.icon} className="h-6 w-6" />
                   </span>
                   <div>
-                    <p className="text-sm font-semibold text-primary">
+                    <p className="text-lg font-semibold text-primary">
                       0{index + 1}
                     </p>
-                    <h2 className="mt-4 text-lg font-semibold text-foreground">
+                    <h2 className="mt-4 text-xl font-semibold text-foreground">
                       {section.title}
                     </h2>
-                    <p className="mt-3 text-sm leading-6 text-muted">
+                    <p className="mt-3 leading-6 text-muted">
                       {section.description}
                     </p>
                   </div>

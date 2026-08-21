@@ -17,19 +17,116 @@ export function HomePageView() {
 
   return (
     <main>
-      <section className="mx-auto max-w-7xl px-6 py-20 lg:px-8 lg:py-28">
+      <section className="mx-auto max-w-7xl px-6 py-10 sm:py-20 lg:px-8 lg:py-28">
         <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1fr)_26rem]">
           <div>
-            <p className="text-sm font-bold tracking-[.18em] text-primary uppercase">
+            <p className="text-lg text-center sm:text-left font-semibold tracking-[.18em] text-primary uppercase">
               {hero.eyebrow}
-            </p>
-            <h1 className="mt-5 max-w-4xl text-5xl font-semibold tracking-tight text-foreground sm:text-6xl lg:text-7xl">
+            </p>{" "}
+            <h1 className="mt-5 text-center sm:text-left max-w-4xl text-5xl font-bold tracking-tight text-foreground sm:text-6xl lg:text-7xl">
               {hero.title}
             </h1>
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-muted">
+            <div className="relative md:hidden mt-5 overflow-hidden rounded-3xl border border-border bg-surface p-4 shadow-[0_18px_50px_-30px_rgb(var(--theme-shadow))]">
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(36,99,235,0.16),_transparent_60%)]" />
+              <div className="rounded-2xl bg-surface-muted p-4">
+                <svg
+                  viewBox="0 0 420 320"
+                  className="h-full w-full"
+                  role="img"
+                  aria-label="Abstract business growth illustration"
+                >
+                  <defs>
+                    <linearGradient
+                      id="shapeGradient"
+                      x1="0"
+                      y1="0"
+                      x2="1"
+                      y2="1"
+                    >
+                      <stop
+                        offset="0%"
+                        stopColor="#2563eb"
+                        stopOpacity="0.30"
+                      />
+                      <stop
+                        offset="100%"
+                        stopColor="#60a5fa"
+                        stopOpacity="0.08"
+                      />
+                    </linearGradient>
+                  </defs>
+                  <rect
+                    x="18"
+                    y="18"
+                    width="384"
+                    height="284"
+                    rx="30"
+                    fill="#ffffff"
+                  />
+                  <circle cx="96" cy="104" r="58" fill="url(#shapeGradient)" />
+                  <circle
+                    cx="300"
+                    cy="82"
+                    r="54"
+                    fill="#bfdbfe"
+                    fillOpacity="0.45"
+                  />
+                  <path
+                    d="M58 216c40-45 73-55 118-38 28 11 45 18 73 10 28-8 59-34 97-58"
+                    fill="none"
+                    stroke="#2563eb"
+                    strokeWidth="10"
+                    strokeLinecap="round"
+                  />
+                  <path
+                    d="M72 196c23-18 42-27 71-24 34 3 61 20 87 18 27-2 46-13 82-41"
+                    fill="none"
+                    stroke="#0f172a"
+                    strokeOpacity="0.14"
+                    strokeWidth="6"
+                    strokeLinecap="round"
+                  />
+                  <rect
+                    x="224"
+                    y="142"
+                    width="108"
+                    height="82"
+                    rx="16"
+                    fill="#2563eb"
+                    fillOpacity="0.12"
+                  />
+                  <rect
+                    x="242"
+                    y="164"
+                    width="60"
+                    height="14"
+                    rx="7"
+                    fill="#2563eb"
+                    fillOpacity="0.8"
+                  />
+                  <rect
+                    x="242"
+                    y="190"
+                    width="72"
+                    height="10"
+                    rx="5"
+                    fill="#60a5fa"
+                  />
+                  <rect
+                    x="242"
+                    y="208"
+                    width="48"
+                    height="10"
+                    rx="5"
+                    fill="#93c5fd"
+                  />
+                </svg>
+              </div>
+            </div>
+            <p className="mt-6 max-w-2xl text-center sm:text-left leading-8 text-muted">
               {hero.description}
             </p>
-            <div className="mt-10 flex flex-wrap gap-3">
+            <div className="mt-10 flex flex-wrap justify-center sm:justify-normal gap-3">
               <Button href={hero.primaryCta.href} size="lg" radius="lg">
                 {hero.primaryCta.label}
               </Button>
@@ -67,7 +164,7 @@ export function HomePageView() {
             </div>
           </div>
 
-          <div className="relative overflow-hidden rounded-3xl border border-border bg-surface p-4 shadow-[0_18px_50px_-30px_rgb(var(--theme-shadow))]">
+          <div className="relative hidden lg:block overflow-hidden rounded-3xl border border-border bg-surface p-4 shadow-[0_18px_50px_-30px_rgb(var(--theme-shadow))]">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(36,99,235,0.16),_transparent_60%)]" />
             <div className="rounded-2xl bg-surface-muted p-4">
               <svg
@@ -164,8 +261,8 @@ export function HomePageView() {
       </section>
 
       <section className="relative border-y border-border bg-surface-muted">
-        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
-          <p className="text-sm font-bold tracking-[.18em] text-primary uppercase">
+        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8 relative z-1">
+          <p className="text-lg font-bold tracking-[.18em] text-primary uppercase">
             {coreBusiness.eyebrow}
           </p>
           <div className="mt-5 grid gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
@@ -183,12 +280,12 @@ export function HomePageView() {
         <img
           src="/svg/handshake-deal.svg"
           alt="handshake trust"
-          className="h-40 absolute right-0 top-0"
+          className="h-40 absolute right-0 top-0 z-0"
         />
       </section>
 
       <section id="services" className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
-        <p className="text-sm font-bold tracking-[.18em] text-primary uppercase">
+        <p className="text-lg font-bold tracking-[.18em] text-primary uppercase">
           {serviceOverview.eyebrow}
         </p>
         <h2 className="mt-3 text-3xl font-semibold tracking-tight text-foreground">
@@ -219,7 +316,7 @@ export function HomePageView() {
               <p className="relative mt-4 text-sm font-semibold text-primary">
                 {service.eyebrow}
               </p>
-              <h3 className="relative mt-3 text-lg font-semibold text-foreground">
+              <h3 className="relative mt-3 text-xl font-semibold text-foreground">
                 {service.name}
               </h3>
               <p className="relative mt-2 text-sm leading-6 text-muted">
@@ -246,7 +343,7 @@ export function HomePageView() {
                 <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
                   <IconComp name={item.icon} className="h-5 w-5" />
                 </span>
-                <h3 className="mt-4 text-lg font-semibold text-foreground">
+                <h3 className="mt-4 text-2xl font-semibold text-foreground">
                   {item.title}
                 </h3>
                 <p className="mt-3 text-sm leading-6 text-muted">{item.text}</p>
@@ -258,7 +355,7 @@ export function HomePageView() {
 
       <section className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
         <div className="max-w-2xl">
-          <p className="text-sm font-bold tracking-[.18em] text-primary uppercase">
+          <p className="text-lg font-bold tracking-[.18em] text-primary uppercase">
             Customer stories
           </p>
           <h2 className="mt-3 text-3xl font-semibold tracking-tight text-foreground">
@@ -319,9 +416,9 @@ export function HomePageView() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl flex items-center gap-10 flex-wrap justify-between px-6 py-20 lg:px-8">
+      <section className="mx-auto max-w-7xl flex items-center gap-10 flex-wrap justify-between px-6 lg:px-8">
         <div className="rounded-2xl px-7 py-12 sm:px-12">
-          <p className="text-sm font-bold text-primary tracking-[.18em] uppercase">
+          <p className="text-lg font-bold text-primary tracking-[.18em] uppercase">
             {cta.eyebrow}
           </p>
           <h2 className="mt-3 max-w-2xl text-3xl font-semibold">{cta.title}</h2>
@@ -337,7 +434,7 @@ export function HomePageView() {
             </Button>
           </div>
         </div>
-        <div className="h-60">
+        <div className="h-60 mx-auto lg:mx-0 ">
           <img
             src="/svg/next-task.svg"
             alt="person searching next task"

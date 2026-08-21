@@ -15,6 +15,7 @@ export interface InformationalPageData {
     description: string;
     icon: IconName;
   }[];
+  image?: string;
 }
 
 export const PAGES_DATA = {
@@ -67,6 +68,7 @@ export const PAGES_DATA = {
         icon: "spark",
       },
     ],
+    image: "business-plan.svg",
   },
   "contact-us": {
     eyebrow: "Contact us",

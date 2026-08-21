@@ -72,7 +72,7 @@ export function Header() {
       ref={headerRef}
       className="sticky top-0 left-0 z-50 border-b border-border/80 shadow-sm bg-surface-muted"
     >
-      <OfferBanner />
+      {/* <OfferBanner /> */}
       <div className="mx-auto flex w-full max-w-7xl items-center gap-3 px-4 py-3 sm:px-6 lg:px-8">
         <LOGO brandNameClass={"hidden sm:block"} />
         <nav
@@ -182,11 +182,7 @@ function OfferBanner() {
             </span>
           </p>
         </div>
-        <a
-          className="site-offer-link"
-          download
-          href={offer.ctaHref}
-        >
+        <a className="site-offer-link" download href={offer.ctaHref}>
           {offer.ctaLabel}
           <span aria-hidden="true">→</span>
         </a>
