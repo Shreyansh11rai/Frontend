@@ -57,6 +57,7 @@ export default function RootLayout({
       <body
         className={`max-h-screen relative bg-canvas font-sans text-foreground ${PoppinsFont.className}`}
       >
+        <SpeedInsights />
         <ThemeProvider>
           <Header />
           {children}
