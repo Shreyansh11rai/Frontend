@@ -3,8 +3,16 @@ import "./globals.css";
 import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
 import { ThemeProvider } from "@/components/layout/theme-provider";
-import { GlobalEnquiryWidget } from "@/components/widgets/global-enquiry-widget";
 import { brand } from "@/config/brand";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Poppins } from "next/font/google";
+
+const PoppinsFont = Poppins({
+  weight: ["300", "400", "500", "600", "700"],
+  preload: true,
+  display: "swap",
+  style: "normal",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(brand.siteUrl),
@@ -46,7 +54,9 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="max-h-screen relative bg-canvas font-sans text-foreground">
+      <body
+        className={`max-h-screen relative bg-canvas font-sans text-foreground ${PoppinsFont.className}`}
+      >
         <ThemeProvider>
           <Header />
           {children}

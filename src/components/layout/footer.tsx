@@ -4,6 +4,8 @@ import { PAGE_NAVIGATION } from "@/data/navigation_data";
 import { BiCalendar, BiLinkExternal } from "react-icons/bi";
 import { IoCallOutline } from "react-icons/io5";
 import { LOGO } from "./header";
+import { FaServicestack } from "react-icons/fa";
+import { BsArrowRight } from "react-icons/bs";
 
 export function Footer() {
   const footerPageLinks = PAGE_NAVIGATION;
@@ -11,7 +13,8 @@ export function Footer() {
   return (
     <footer className="border-t border-border bg-surface">
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-        <div className="border-b border-border pb-7 *:w-full grid grid-cols-1 sm:grid-cols-2  md:grid-cols-4 gap-3">
+        {/* brand and CTAs  */}
+        <div className="border-b border-border pb-7">
           <div className="flex items-center gap-4">
             <span
               aria-hidden="true"
@@ -28,62 +31,83 @@ export function Footer() {
               </p>
             </div>
           </div>
-          {/* email  */}
-          <a
-            className="group inline-flex w-fit items-center gap-3 rounded-xl border border-border bg-canvas px-4 py-3 text-left transition-colors hover:border-primary hover:bg-surface-muted"
-            href={`mailto:${brand.contactEmail}`}
-            aria-label={`Email ${brand.name} at ${brand.contactEmail}`}
-          >
-            <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10 text-primary">
-              <EmailIcon />
-            </span>
-            <span>
-              <span className="block text-xs font-semibold tracking-[0.12em] text-subtle uppercase">
-                Start a conversation
+          <div className="*:w-full grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 mt-5">
+            {/* email  */}
+            <a
+              className="group inline-flex min-w-min items-center gap-3 rounded-xl border border-border bg-canvas px-4 py-3 text-left transition-colors hover:border-primary hover:bg-surface-muted"
+              href={`mailto:${brand.contactEmail}`}
+              aria-label={`Email ${brand.name} at ${brand.contactEmail}`}
+            >
+              <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                <EmailIcon />
               </span>
-              <span className="mt-0.5 hidden md:block text-sm font-semibold text-foreground group-hover:text-primary">
-                {brand.contactEmail}
+              <span>
+                <span className="block text-xs font-semibold tracking-[0.12em] text-subtle uppercase">
+                  Start a conversation
+                </span>
+                <span className="mt-0.5 text-sm font-semibold text-foreground group-hover:text-primary">
+                  {brand.contactEmail}
+                </span>
               </span>
-            </span>
-          </a>
-          {/* call  */}
-          <a
-            className="group inline-flex w-fit items-center gap-3 rounded-xl border border-border bg-canvas px-4 py-3 text-left transition-colors hover:border-primary hover:bg-surface-muted"
-            href={`tel:${brand.contactNumber}`}
-            aria-label={`Call us ${brand.contactNumber}`}
-          >
-            <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10 text-primary">
-              <IoCallOutline />
-            </span>
-            <span>
-              <span className="block text-xs font-semibold tracking-[0.12em] text-subtle uppercase">
-                Call us
+            </a>
+            {/* call  */}
+            <a
+              className="group min-w-min inline-flex w-fit items-center gap-3 rounded-xl border border-border bg-canvas px-4 py-3 text-left transition-colors hover:border-primary hover:bg-surface-muted"
+              href={`tel:${brand.contactNumber}`}
+              aria-label={`Call us ${brand.contactNumber}`}
+            >
+              <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                <IoCallOutline />
               </span>
-              <span className="mt-0.5 block text-sm font-semibold text-foreground group-hover:text-primary">
-                {brand.contactNumber}
+              <span>
+                <span className="block text-xs font-semibold tracking-[0.12em] text-subtle uppercase">
+                  Call us
+                </span>
+                <span className="mt-0.5 block text-sm font-semibold text-foreground group-hover:text-primary">
+                  {brand.contactNumber}
+                </span>
               </span>
-            </span>
-          </a>
-          {/* appointment  */}
-          <a
-            className="group inline-flex w-fit items-center gap-3 rounded-xl border border-border bg-canvas px-4 py-3 text-left transition-colors hover:border-primary hover:bg-surface-muted"
-            href={`/contact-us`}
-            aria-label={`Request a call`}
-          >
-            <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10 text-primary">
-              <BiCalendar />
-            </span>
-            <span>
-              <span className="block text-xs font-semibold tracking-[0.12em] text-subtle uppercase">
-                Schedule a callback
+            </a>
+            {/* appointment  */}
+            <a
+              className="group inline-flex min-w-min w-fit items-center gap-3 rounded-xl border border-border bg-canvas px-4 py-3 text-left transition-colors hover:border-primary hover:bg-surface-muted"
+              href={`/contact-us`}
+              aria-label={`Request a call`}
+            >
+              <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                <BiCalendar />
               </span>
-              <span className="mt-0.5 flex items-center gap-2 text-sm font-semibold text-foreground group-hover:text-primary">
-                <BiLinkExternal />
-                Fill in details
+              <span>
+                <span className="block text-xs font-semibold tracking-[0.12em] text-subtle uppercase">
+                  Schedule a callback
+                </span>
+                <span className="mt-0.5 flex items-center gap-2 text-sm font-semibold text-foreground group-hover:text-primary">
+                  <BiLinkExternal />
+                  Fill in details
+                </span>
               </span>
-            </span>
-          </a>
+            </a>
+            {/* services  */}
+            <a
+              className="group inline-flex min-w-min w-fit items-center gap-3 rounded-xl border border-border bg-canvas px-4 py-3 text-left transition-colors hover:border-primary hover:bg-surface-muted"
+              href={`#services`}
+              aria-label={`Go to services`}
+            >
+              <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                <FaServicestack />
+              </span>
+              <span>
+                <span className="block text-xs font-semibold tracking-[0.12em] text-subtle uppercase">
+                  Go to services
+                </span>
+                <span className="mt-0.5 flex items-center gap-2 text-sm font-semibold text-foreground group-hover:text-primary">
+                  <BsArrowRight className="-rotate-45" />
+                </span>
+              </span>
+            </a>
+          </div>
         </div>
+        {/* pages and links  */}
         <div className="mt-8 grid gap-8 text-sm text-muted md:grid-cols-2 lg:grid-cols-3">
           <div>
             <p className="text-sm font-semibold tracking-[0.16em] text-subtle uppercase">

@@ -3,6 +3,7 @@
 import { Button } from "@/components/shared/Button";
 import { useTheme } from "next-themes";
 import { isThemeName } from "@/lib/theme";
+import { BiMoon, BiSun } from "react-icons/bi";
 
 export function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme();
@@ -20,7 +21,7 @@ export function ThemeToggle() {
       title={`Switch to ${nextTheme} theme`}
     >
       <span aria-hidden="true" className="text-lg leading-none">
-        {currentTheme === "dark" ? "☀" : "☾"}
+        {currentTheme === "dark" ? <BiSun /> : <BiMoon />}
       </span>
     </Button>
   );

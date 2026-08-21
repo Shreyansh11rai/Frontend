@@ -2,15 +2,15 @@
 
 /* Semantic design tokens. Update these values to retheme the entire product. */
 :root {
-  --theme-canvas: #f8fafc;
-  --theme-surface: #ffffff;
+  --theme-canvas: #e4e4e4;
+  --theme-surface: #c0c0c0;
   --theme-surface-muted: #f1f5f9;
-  --theme-foreground: #172033;
-  --theme-muted: #5b677a;
-  --theme-subtle: #8a96a8;
-  --theme-border: #dbe3ee;
-  --theme-primary: #2463eb;
-  --theme-primary-hover: #1d4ed8;
+  --theme-foreground: #10131a;
+  --theme-muted: #383838;
+  --theme-subtle: #525252;
+  --theme-border: #cecece;
+  --theme-primary: #4100b9;
+  --theme-primary-hover: rgb(94, 45, 185);
   --theme-primary-foreground: #ffffff;
   --theme-success: #0f9f6e;
   --theme-warning: #ba7000;
@@ -19,16 +19,16 @@
 }
 
 .dark {
-  --theme-canvas: #0c1220;
-  --theme-surface: #151e2f;
-  --theme-surface-muted: #1c283c;
-  --theme-foreground: #f1f5f9;
-  --theme-muted: #a8b5c8;
-  --theme-subtle: #76859a;
-  --theme-border: #2c3a50;
-  --theme-primary: #78a6ff;
-  --theme-primary-hover: #a5c4ff;
-  --theme-primary-foreground: #0c1730;
+  --theme-canvas: #000000;
+  --theme-surface: #1a1a1a;
+  --theme-surface-muted: #272727;
+  --theme-foreground: #eeeeee;
+  --theme-muted: #e0e0e0;
+  --theme-subtle: #c7c7c7;
+  --theme-border: #505050;
+  --theme-primary: #9061e7;
+  --theme-primary-hover: #7a3ee9;
+  --theme-primary-foreground: #000000;
   --theme-success: #4fd1a2;
   --theme-warning: #f7b955;
   --theme-focus: #a5c4ff;
