@@ -5,6 +5,12 @@ export const brand = {
   description:
     "Digital services and AI automations designed to move ambitious businesses forward in AI thriving era.",
   siteUrl: "https://doomsphere.com",
+  icons: {
+    favicon: "/favicon.ico",
+    icon: "/icon.png",
+    svgIcon: "/icon.svg",
+    apple: "/apple-icon.png",
+  },
   contactEmail: "hello@doomsphere.com",
   contactNumber: "+918858191942",
   whatsapp: "+919044483322",
